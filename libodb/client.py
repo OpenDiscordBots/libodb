@@ -1,5 +1,5 @@
 from json import dumps
-from typing import Any, Optional, Type, TypeVar
+from typing import Any, Optional, Type, TypeVar, Union
 
 from aiohttp import ClientSession
 from pydantic import BaseModel
@@ -47,7 +47,7 @@ class APIClient:
 
         return await resp.json()
 
-    async def get_guild_config(self, guild: int, module: str, model: Type[T]) -> T | None:
+    async def get_guild_config(self, guild: int, module: str, model: Type[T]) -> Union[T, None]:
         if not issubclass(model, BaseModel):
             raise TypeError("Model must be a subclass of pydantic.BaseModel")
 
