@@ -42,8 +42,10 @@ class APIClient:
     async def kv_get(self, key: str) -> Any:
         resp = await self._session.get(f"{self._url}/kv/{self.kv_key(key)}")
 
-        if not resp:
+        if resp.status == 404:
             return None
+
+        resp.raise_for_status()
 
         return await resp.json()
 
@@ -53,8 +55,10 @@ class APIClient:
 
         resp = await self._session.get(f"{self._url}/guilds/{guild}/config/{module}")
 
-        if not resp:
+        if resp.status == 404:
             return None
+
+        resp.raise_for_status()
 
         return model(**(await resp.json()))
 
