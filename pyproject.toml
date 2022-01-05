@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "libodb"
-version = "1.0.0"
+version = "1.0.1"
 description = "A client library for accessing the OpenDiscordBots API"
 authors = ["vcokltfre <vcokltfre@gmail.com>"]
 license = "MIT"
